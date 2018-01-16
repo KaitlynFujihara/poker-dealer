@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js">
@@ -10,6 +11,17 @@
     <title>Deck of Cards</title>
   </head>
   <body>
-
+    <div class="container">
+      <div class="jumbotron">
+        <span id="title"><h1>Poker Dealer</h1>
+        <h2>Play Poker by yourself!</h2></span>
+      </div>
+        <div class="buttons">
+        <button id="show" type="button" class="btn btn-danger">Show cards</button>
+        <button id="shuffle" type="button" class="btn btn-danger">Shuffle cards</button>
+        <button id="deal" type="button" class="btn btn-danger">Deal Me a Hand!</button>
+      </div>
+      <div id="cards"></div>
+    </div>
   </body>
 </html>
