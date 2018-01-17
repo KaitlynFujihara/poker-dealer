@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
   $("button#show").click(function() {
+    $("#hint").hide();
     $("#cards").empty();
     cards.forEach(function(card) {
       $("#cards").append('<img src="img/'+card+'.png">');
@@ -8,6 +9,7 @@ $(document).ready(function(){
   });
 
   $("button#shuffle").click(function() {
+    $("#hint").hide();
     shuffle(cards);
     $("#cards").empty();
     cards.forEach(function(card) {
@@ -24,8 +26,6 @@ $(document).ready(function(){
       $("#cards").append('<img src="img/'+ cards[i] +'.png">');
       hand.push(cards[i]);
     };
-
-
   });
 
   $("button#hint").click(function() {
@@ -38,7 +38,6 @@ $(document).ready(function(){
     } else if (pairs(hand)) {
         alert("You have a pair");
     }
-
   });
 });
 
