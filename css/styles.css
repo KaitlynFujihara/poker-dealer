@@ -33,3 +33,8 @@ body {
   text-align:center;
   margin:auto;
 }
+
+#hint {
+  display:none;
+  margin: 0 auto;
+}

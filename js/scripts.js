@@ -17,6 +17,7 @@ $(document).ready(function(){
 
   $("button#deal").click(function() {
     shuffle(cards);
+    $("#hint").show();
     $("#cards").empty();
     hand = [];
     for (var i=0; i<5; i++) {
@@ -28,10 +29,11 @@ $(document).ready(function(){
   });
 
   $("button#hint").click(function() {
-    if (flush(hand)) {
-      alert("You have a flush!")
-    }
-      else if(threeOfKind(hand) {
+    if (fullHouse(hand)) {
+      alert("You have a full house!");
+    } else if (flush(hand)) {
+        alert("You have a flush!");
+    } else if(threeOfKind(hand)) {
         alert("You have three of a kind");
     } else if (pairs(hand)) {
         alert("You have a pair");
@@ -67,6 +69,7 @@ function pairs(hand) {
     for (var j=i+1; j<5; j++) {
       var compareTwo = hand[j].split('_');
       if (compareOne[0] === compareTwo[0]) {
+        console.log(i,j);
         return true;
       }
     }
@@ -89,22 +92,24 @@ function threeOfKind(hand) {
   }
 }
 
-function flush(hand) {
+function fullHouse(hand) {
   for (var i=0; i<5; i++) {
     var compareOne = hand[i].split('_');
     for (var j=i+1; j<5; j++) {
       var compareTwo = hand[j].split('_');
-      if (compareOne[2] === compareTwo[2]) {
+      if (compareOne[0] === compareTwo[0]) {
         for (var k=j+1; k<5; k++) {
           var compareThree = hand[k].split('_');
-          if (compareTwo[2]===compareThree[2])
-            for (var l=0; l<5; l++) {
-              var compareFour = hand[l].split('_');
-              if (compareThree[2]===compareFour[2])
-                for (var m=l+1; m<5; m++) {
-                  var compareFive = hand[j].split('_');
-                  if (compareFour[2] === compareFive[2]){
-                    return true;
+          if (compareTwo[0]===compareThree[0]) {
+            for (var x=0; x<5; x++) {
+              if (x!=i && x!=j && x!=k) {
+                for (var y=x+1; y<5; y++) {
+                  if (y!=i && y!=j && y!=k) {
+                    compareFour = hand[x].split('_');
+                    compareFive = hand[y].split('_');
+                    if (compareFour[0] === compareFive[0]) {
+                      return true;
+                    }
                   }
                 }
               }
@@ -113,3 +118,16 @@ function flush(hand) {
         }
       }
     }
+  }
+}
+function flush(hand){
+  var compareCard;
+  for (var i=0; i<5; i++) {
+    var currentCard = hand[i].split('_');
+    if(currentCard[2]!=compareCard){
+      return false;
+    }
+    compareCard = currentCard[2]
+    }
+    return true;
+}
